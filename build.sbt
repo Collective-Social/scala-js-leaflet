@@ -6,13 +6,18 @@ normalizedName := "scala-js-leaflet"
 
 organization := "nl.thijsbroersen"
 
-scalaVersion := "2.13.1"
+scalaVersion := "2.12.10"
 
-scalacOptions ++= Seq("-deprecation", "-feature", "-P:scalajs:sjsDefinedByDefault")
+scalacOptions ++= Seq("-deprecation", "-feature") ++ (
+  if (scalaJSVersion.startsWith("0.6.")) Seq("-P:scalajs:sjsDefinedByDefault")
+  else Nil
+)
 
-crossScalaVersions := Seq("2.11.12", "2.12.10", "2.13.1")
+version := "0.3.2-SNAPSHOT"
 
-libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "0.9.7"
+crossScalaVersions := Seq("2.12.10", "2.13.1")
+
+libraryDependencies += "org.scala-js" %%% "scalajs-dom" % "1.0.0"
 
 inThisBuild(List(
   homepage := Some(url("https://github.com/ThijsBroersen/scala-js-leaflet")),
